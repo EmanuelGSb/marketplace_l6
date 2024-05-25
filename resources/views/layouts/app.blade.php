@@ -27,15 +27,17 @@
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
               <a class="nav-link active" aria-current="page" href="#" onclick="event.preventDefault(); document.querySelector('form.logout').submit();" >Sair</a>
-              @endauth
 
               <form action="{{route('logout')}}" class="logout" method="POST" style="displat:none;">
               @csrf
               </form>
             </li>
-            <li class="nav-link"> <span>{{auth()->user()->name}} </span></li>
+            <li class="nav-link"> 
+              <span>{{auth()->user()->name}} </span>
+            </li>
           </ul>
         </div>
+        @endauth
       </div>
     </div>
   </nav>
