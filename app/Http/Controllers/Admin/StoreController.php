@@ -9,9 +9,14 @@ use App\Http\Requests\StoreRequest;
 
 class StoreController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('user.has.store')->only(['create', 'store']);
+    }
+
     public function index(){
-        $stores = \App\Store::paginate(10);
-        return view('admin.stores.index', compact('stores'));
+        $store = auth()->user()->store;
+        return view('admin.stores.index', compact('store'));
     }
     
 
@@ -34,7 +39,7 @@ class StoreController extends Controller
     public function edit ($store){
 
         $store = \App\Store::find($store);
-        // log::info($store);
+        // log::info($store); --> log do laravel
         return view('admin.stores.edit', compact('store'));
        
 
